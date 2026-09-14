@@ -1,8 +1,1 @@
----
----
-{% include v6_1.html %}
-{% include v6_2.html %}
-{% include v6_3.html %}
-{% include v6_4.html %}
-{% include v6_5.html %}
-{% include v6_6.html %}
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FinSuccess Dashboard</title></head><body><div id="loading" style="font-family:Arial,sans-serif;padding:40px;text-align:center">Đang tải dashboard...</div><script>(async()=>{try{const files=['v7/chunk1.txt','v7/chunk2.txt','v7/chunk3.txt','v7/chunk4.txt','v7/chunk5.txt','v7/chunk6.txt','v7/chunk7.txt'];const parts=await Promise.all(files.map(f=>fetch(f+'?v=7').then(r=>{if(!r.ok)throw new Error(f+' '+r.status);return r.text()})));document.open();document.write(parts.join(''));document.close();}catch(e){document.getElementById('loading').innerHTML='Không tải được dashboard. Vui lòng tải lại trang.<br><small>'+e.message+'</small>';}})();</script></body></html>
