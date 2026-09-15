@@ -1,1 +1,48 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard Phân bón</title><style>body{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;margin:0;padding:32px;background:#fbfbfd;color:#202430}.msg{max-width:720px;margin:10vh auto;padding:24px;border:1px solid #e5e7ef;border-radius:16px;background:#fff}h1{color:#202a83}small{color:#6f7485}</style></head><body><div class="msg"><h1>Đang tải Dashboard Phân bón…</h1><small>FinSuccess</small></div><script>(async()=>{try{const files=['chunk1.txt','chunk2.txt','chunk3.txt','chunk4.txt','chunk5.txt','chunk6.txt','chunk7.txt'];const parts=await Promise.all(files.map(async f=>{const r=await fetch('../v7/'+f,{cache:'no-store'});if(!r.ok)throw new Error(f+' '+r.status);return await r.text()}));document.open();document.write(parts.join(''));document.close()}catch(e){document.body.innerHTML='<div class="msg"><h1>Không tải được dashboard</h1><p>'+e.message+'</p></div>'}})();</script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FinSuccess | Dashboard ngành phân bón</title>
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;margin:0;padding:24px;background:#fbfbfd;color:#202430}
+    .loading{max-width:900px;margin:60px auto;padding:24px 28px;background:#fff;border:1px solid #e5e7ef;border-radius:16px;box-shadow:0 10px 30px rgba(32,42,131,.07)}
+    h1{margin:0 0 8px;color:#202a83;font-size:24px}
+    p{margin:0;color:#6f7485;line-height:1.6}
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <h1>Đang tải dashboard phân bón...</h1>
+    <p>Nếu trang chưa hiển thị ngay, vui lòng chờ trong giây lát để trình duyệt tải các phần nội dung.</p>
+  </div>
+  <script>
+    const b64ToUint8 = (b64) => {
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return bytes;
+    };
+    async function gunzipToText(bytes){
+      const ds = new DecompressionStream('gzip');
+      const stream = new Blob([bytes]).stream().pipeThrough(ds);
+      return await new Response(stream).text();
+    }
+    (async function(){
+      const parts = Array.from({length: 10}, (_,i) => `v8/chunk${i+1}.txt`);
+      try {
+        const texts = await Promise.all(parts.map(p => fetch(p).then(r => {
+          if(!r.ok) throw new Error('Không tải được ' + p);
+          return r.text();
+        })));
+        const html = await gunzipToText(b64ToUint8(texts.join('')));
+        document.open();
+        document.write(html);
+        document.close();
+      } catch (err) {
+        document.body.innerHTML = '<div class="loading"><h1>Lỗi tải dashboard</h1><p>' + (err && err.message ? err.message : 'Không xác định') + '</p></div>';
+      }
+    })();
+  </script>
+</body>
+</html>
