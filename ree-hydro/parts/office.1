@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard Văn phòng cho thuê REE</title>
+<style>
+:root{
+  --do:#a51423;
+  --do2:#7f0f1b;
+  --nen:#f3f5f7;
+  --the:#ffffff;
+  --chu:#18212b;
+  --phu:#667085;
+  --line:#e7eaee;
+  --xanh:#13865c;
+  --vang:#b7791f;
+  --xanhduong:#1f5eff;
+  --tim:#7857ff;
+  --nhat:#fcf3f4;
+  --nhat2:#f7f8fa;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--nen);color:var(--chu);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{max-width:1460px;margin:0 auto;padding:18px}
+.hero{
+  background:linear-gradient(120deg,#101923 0%,#202c3b 60%,#391017 100%);
+  color:#fff;border-radius:24px;padding:22px 24px;box-shadow:0 14px 36px rgba(16,24,40,.15)
+}
+.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:58px;height:58px;border-radius:14px;background:var(--do);display:grid;place-items:center;font-weight:900;font-size:22px}
+h1{margin:0 0 6px;font-size:28px;letter-spacing:-.6px}
+.sub{font-size:13px;color:#d4d9e1;line-height:1.55}
+.meta{text-align:right;font-size:12px;color:#d7dde5;line-height:1.6}
+.badge{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:6px 10px;border-radius:999px;font-weight:800}
+.notehero{margin-top:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px;font-size:12px;line-height:1.6}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(6,1fr);margin-top:14px}
+.card{background:var(--the);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 6px 18px rgba(20,30,50,.04)}
+.kpi{position:relative;overflow:hidden}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#d8dde3}
+.kpi.hot:before{background:var(--do)}
+.kpi.good:before{background:var(--xanh)}
+.kpi.warn:before{background:var(--vang)}
+.kpi .t{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--phu);font-weight:800}
+.kpi .v{font-size:30px;font-weight:900;letter-spacing:-1px;margin-top:8px}
+.kpi .s{font-size:11px;color:var(--phu);margin-top:6px;line-height:1.45}
+.row2{grid-template-columns:1.1fr .9fr;margin-top:14px}
+.row3{grid-template-columns:1fr 1fr;margin-top:14px}
+.row4{grid-template-columns:.9fr 1.1fr;margin-top:14px}
+.title{font-size:15px;font-weight:900;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.title small{font-size:11px;color:var(--phu);font-weight:600}
+.boxsoft{background:var(--nhat2);border:1px solid var(--line);border-radius:14px;padding:12px}
+.insight{margin-top:10px;padding:12px 13px;border-radius:12px;background:var(--nhat);border-left:4px solid var(--do);font-size:12.5px;line-height:1.6}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--phu);margin-top:8px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.red{background:var(--do)} .purple{background:var(--tim)} .blue{background:var(--xanhduong)} .green{background:var(--xanh)}
+.chart{height:275px}
+svg{width:100%;height:100%}
+.axis{stroke:#dfe3e8;stroke-width:1}
+.tx{font-size:10px;fill:#697386}
+.txb{font-size:10px;fill:#344054;font-weight:800}
+.lineRed{fill:none;stroke:var(--do);stroke-width:3}
+.linePurple{fill:none;stroke:var(--tim);stroke-width:3}
+.cRed{fill:var(--do);stroke:#fff;stroke-width:2}
+.cPurple{fill:var(--tim);stroke:#fff;stroke-width:2}
+table{width:100%;border-collapse:collapse}
+th,td{font-size:11px;text-align:left;padding:9px 7px;border-bottom:1px solid #edf0f3;vertical-align:top}
+th{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--phu)}
+td strong{font-size:11.5px}
+.tag{display:inline-block;padding:4px 7px;border-radius:999px;font-size:9px;font-weight:900}
+.tag.g{background:#e9f8ef;color:#0e7d55}
+.tag.r{background:#fdecef;color:#a51423}
+.tag.b{background:#eaf1ff;color:#2453b5}
+.tag.y{background:#fff4dd;color:#946200}
+.barrow{margin:10px 0}
+.barhead{display:flex;justify-content:space-between;font-size:11px;color:#344054;margin-bottom:5px}
+.bar{height:10px;background:#edf1f5;border-radius:999px;overflow:hidden}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--do),#d45863)}
+.fill.blue{background:linear-gradient(90deg,#2357db,#69a3ff)}
+.fill.green{background:linear-gradient(90deg,#11845b,#52c29a)}
+.scenario{display:grid;grid-template-columns:1fr 220px;gap:10px;align-items:end;margin-top:12px}
+input[type=range]{width:100%;accent-color:var(--do)}
+.big{font-size:36px;font-weight:900;color:var(--do);letter-spacing:-1px;text-align:right}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.metric{background:var(--nhat2);border:1px solid var(--line);border-radius:12px;padding:10px}
+.metric .vv{font-size:18px;font-weight:900}
+.metric .ll{font-size:10px;color:var(--phu);margin-top:4px}
+.timeline{position:relative;padding-left:22px}
+.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:#e1e6eb}
+.event{position:relative;margin:0 0 14px}
+.event:before{content:"";position:absolute;left:-20px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--do);box-shadow:0 0 0 4px #fdecef}
+.event .d{font-size:10px;color:var(--do);font-weight:900}
+.event .c{font-size:12px;line-height:1.5;margin-top:4px}
+.mapwrap{background:#fbfcfe;border:1px solid var(--line);border-radius:16px;padding:12px}
+.mapnote{font-size:11px;color:var(--phu);line-height:1.55;margin-top:8px}
+.bullets{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bul{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
+.bul h4{margin:0 0 6px;font-size:12px}
+.bul p{margin:0;font-size:11px;color:var(--phu);line-height:1.55}
+.watch{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.w{border:1px solid var(--line);border-radius:14px;background:#fff;padding:11px}
+.w .q{font-size:11px;font-weight:900}
+.w .a{font-size:10.5px;color:var(--phu);line-height:1.5;margin-top:5px}
+.footer{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 15px;font-size:10.5px;color:var(--phu);line-height:1.65}
+.kicker{display:inline-block;background:#fce8eb;color:var(--do2);padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;margin-bottom:10px}
+@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}.row2,.row3,.row4{grid-template-columns:1fr}.watch{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.wrap{padding:10px}.topbar{flex-direction:column}.meta{text-align:left}.kpis{grid-template-columns:repeat(2,1fr)}.scenario{grid-template-columns:1fr}.big{text-align:left}.metrics,.watch,.bullets{grid-template-columns:1fr}}
+</style>
+<style id="ree-master-nav-style">.reeMasterNav{position:sticky;top:0;z-index:99999;background:#fff;border-bottom:1px solid #e5e7ef;padding:9px 18px;display:flex;gap:8px;align-items:center;font-family:Inter,system-ui,sans-serif;box-shadow:0 3px 14px rgba(32,42,131,.06)}.reeMasterBrand{font-weight:950;color:#202a83;margin-right:auto}.reeMasterBrand b{color:#f4b82d}.reeMasterNav a{text-decoration:none;padding:8px 13px;border:1px solid #e5e7ef;border-radius:999px;color:#41465a;font-size:12px;font-weight:800}.reeMasterNav a.active{background:#202a83;color:#fff;border-color:#202a83}@media(max-width:640px){.reeMasterNav{padding:8px;overflow:auto}.reeMasterBrand{display:none}.reeMasterNav a{white-space:nowrap;flex:1;text-align:center}}</style></head>
+<body><div class="reeMasterNav"><div class="reeMasterBrand">Fin<b>Success</b> · REE</div><a href="./" >Thủy điện</a><a href="me.html" class="">M&amp;E</a><a href="office.html" class="active">Văn phòng cho thuê</a></div>
+<div class="wrap">
+  <section class="hero">
+    <div class="topbar">
+      <div>
+        <div class="brand">
+          <div class="logo">REE</div>
+          <div>
+            <h1>Dashboard mảng cho thuê văn phòng REE</h1>
+            <div class="sub">Thiết kế lại theo phong cách tối giản, trực quan, dùng hoàn toàn tiếng Việt · trọng tâm: lấp đầy, vận tốc cho thuê, lợi nhuận và hạ tầng quanh cụm e.town.</div>
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="badge">Cập nhật đến 16/09/2026</span><br>
+        Điểm dữ liệu lấp đầy mới nhất: <b>10/07/2026</b><br>
+        Dữ liệu thị trường: <b>Q2/2026</b>
+      </div>
+    </div>
+    <div class="notehero">
+      <b>Luận điểm chính:</b> danh mục văn phòng cũ của REE vẫn tạo dòng tiền ổn định, còn biến số quyết định hướng tăng trưởng hiện tại là <b>e.town 6</b>. Hạ tầng quanh cụm Cộng Hòa đã cải thiện rõ sau khi kết nối Nhà ga T3, nhưng tốc độ lấp đầy của e.town 6 vẫn còn chậm; do đó cần theo dõi sát <b>vận tốc hấp thụ diện tích</b>, thay vì chỉ nhìn mục tiêu lấp đầy cuối năm.
+    </div>
+  </section>
+  <section class="grid 
