@@ -1,0 +1,110 @@
+kpis">
+    <div class="card kpi hot"><div class="t">Lấp đầy e.town 6</div><div class="v">58%</div><div class="s">Tăng 5 điểm % so với cuối 2025 · là KPI quan trọng nhất của mảng văn phòng</div></div>
+    <div class="card kpi good"><div class="t">Lấp đầy toàn danh mục</div><div class="v">90–92%</div><div class="s">Cụm tài sản cũ vẫn duy trì tỷ lệ cho thuê tương đối cao</div></div>
+    <div class="card kpi"><div class="t">Tổng diện tích cho thuê</div><div class="v">181.961</div><div class="s">m² · 12 tòa nhà văn phòng tại TP.HCM</div></div>
+    <div class="card kpi"><div class="t">Diện tích e.town 6</div><div class="v">36.780</div><div class="s">m² · công trình LEED Platinum · vận hành từ 2024</div></div>
+    <div class="card kpi warn"><div class="t">Diện tích trống e.town 6</div><div class="v">~15,4k</div><div class="s">m² còn cần thương mại hóa tại mức lấp đầy 58%</div></div>
+    <div class="card kpi"><div class="t">Trống văn phòng TP.HCM</div><div class="v">16,7%</div><div class="s">Hạng A Q2/2026 · Hạng B là 12,5%</div></div>
+  </section>
+  <section class="grid row2">
+    <div class="card">
+      <div class="kicker">1. Theo dõi vận hành</div>
+      <div class="title">Diễn biến lấp đầy <small>Dữ liệu thực tế đã công bố</small></div>
+      <div class="chart">
+        <svg viewBox="0 0 760 275" preserveAspectRatio="none">
+          <line x1="54" y1="24" x2="54" y2="228" class="axis"/><line x1="54" y1="228" x2="740" y2="228" class="axis"/>
+          <line x1="54" y1="64" x2="740" y2="64" class="axis" opacity=".5"/><line x1="54" y1="104" x2="740" y2="104" class="axis" opacity=".5"/><line x1="54" y1="144" x2="740" y2="144" class="axis" opacity=".5"/><line x1="54" y1="184" x2="740" y2="184" class="axis" opacity=".5"/>
+          <text x="15" y="28" class="tx">100%</text><text x="22" y="68" class="tx">90%</text><text x="22" y="108" class="tx">80%</text><text x="22" y="148" class="tx">70%</text><text x="22" y="188" class="tx">60%</text><text x="22" y="232" class="tx">50%</text>
+          <polyline points="110,33 250,42 390,53 530,57" class="lineRed"/>
+          <circle cx="110" cy="33" r="5" class="cRed"/><circle cx="250" cy="42" r="5" class="cRed"/><circle cx="390" cy="53" r="5" class="cRed"/><circle cx="530" cy="57" r="5" class="cRed"/>
+          <text x="90" y="20" class="txb">97,5%</text><text x="230" y="29" class="txb">95,3%</text><text x="370" y="40" class="txb">92,4%</text><text x="510" y="44" class="txb">91,9%</text>
+          <text x="90" y="248" class="tx">2022</text><text x="230" y="248" class="tx">2023</text><text x="370" y="248" class="tx">2024</text><text x="510" y="248" class="tx">2025</text>
+          <polyline points="530,209 670,189" class="linePurple"/>
+          <circle cx="530" cy="209" r="5" class="cPurple"/><circle cx="670" cy="189" r="5" class="cPurple"/>
+          <text x="512" y="199" class="txb">53%</text><text x="651" y="178" class="txb">58%</text>
+          <text x="500" y="265" class="tx">e.town 6 cuối 2025</text><text x="636" y="265" class="tx">e.town 6 07/2026</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <div><span class="dot red"></span>Lấp đầy danh mục cũ</div>
+        <div><span class="dot purple"></span>Lấp đầy e.town 6</div>
+      </div>
+      <div class="insight">
+        <b>Đọc nhanh:</b> tài sản cũ của REE vẫn hoạt động khỏe, trong khi e.town 6 mới tăng từ <b>53% lên 58%</b> trong nửa đầu 2026. Nghĩa là thị trường đang hấp thụ thêm diện tích, nhưng tốc độ còn chậm và chưa đủ để tạo một “bước ngoặt” rõ ràng cho lợi nhuận.
+      </div>
+    </div>
+    <div class="card">
+      <div class="kicker">2. Công cụ theo dõi nhanh</div>
+      <div class="title">Bộ đo độ nhạy của e.town 6 <small>Kéo thanh để xem các mốc lấp đầy</small></div>
+      <div class="barrow"><div class="barhead"><span>Mức thực tế hiện tại</span><b>58%</b></div><div class="bar"><div class="fill" style="width:58%"></div></div></div>
+      <div class="barrow"><div class="barhead"><span>Mốc tham chiếu 80%</span><b>cần cho thuê thêm ~8.092 m²</b></div><div class="bar"><div class="fill blue" style="width:80%"></div></div></div>
+      <div class="barrow"><div class="barhead"><span>Mốc tham chiếu 90%</span><b>cần cho thuê thêm ~11.770 m²</b></div><div class="bar"><div class="fill green" style="width:90%"></div></div></div>
+      <div class="scenario">
+        <div>
+          <div style="font-size:11px;color:var(--phu);margin-bottom:6px">Giả định tỷ lệ lấp đầy</div>
+          <input id="occ" type="range" min="58" max="100" value="75" step="1" oninput="capNhat()">
+        </div>
+        <div class="big" id="tyle">75%</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="vv" id="dtDaThue">27.585</div><div class="ll">Diện tích đã cho thuê (m²)</div></div>
+        <div class="metric"><div class="vv" id="dtTrong">9.195</div><div class="ll">Diện tích còn trống (m²)</div></div>
+        <div class="metric"><div class="vv" id="dtThem">6.253</div><div class="ll">Diện tích phải cho thuê thêm so với 58% (m²)</div></div>
+      </div>
+      <div class="insight">
+        <b>Khuyến nghị cách theo dõi:</b> đừng lấy ngay mốc 100% làm giả định cơ sở. Thực tế hơn, nên theo sát các nấc <b>65% → 70% → 80%</b>; nếu vượt được 70% với tốc độ tốt, xác suất phục hồi biên lợi nhuận của mảng văn phòng sẽ rõ hơn.
+      </div>
+    </div>
+  </section>
+  <section class="grid row3">
+    <div class="card">
+      <div class="kicker">3. Dòng tiền và lợi nhuận</div>
+      <div class="title">Hình dạng lợi nhuận mảng văn phòng <small>Tỷ đồng</small></div>
+      <table>
+        <thead>
+          <tr><th>Chỉ tiêu</th><th>2023</th><th>2024</th><th>2025</th><th>Nhận xét</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Doanh thu</strong></td><td>1.049</td><td>1.069</td><td>1.155</td><td><span class="tag g">Tăng trưởng</span></td></tr>
+          <tr><td><strong>LNST</strong></td><td>537</td><td>476</td><td>460</td><td><span class="tag r">Chưa theo kịp doanh thu</span></td></tr>
+          <tr><td><strong>Biên LNST</strong></td><td>51,2%</td><td>44,5%</td><td>39,8%</td><td>Biên bị pha loãng khi e.town 6 mới vận hành</td></tr>
+        </tbody>
+      </table>
+      <div class="insight">
+        <b>Ý nghĩa đầu tư:</b> REE đã ghi nhận trước phần <b>khấu hao và chi phí vận hành</b> của e.town 6, trong khi phần doanh thu tăng thêm còn chưa chạy đủ nhanh. Nếu lấp đầy tăng, phần doanh thu cộng thêm có khả năng chuyển hóa thành lợi nhuận với tốc độ nhanh hơn doanh thu.
+      </div>
+    </div>
+    <div class="card">
+      <div class="kicker">4. So sánh với thị trường</div>
+      <div class="title">Bối cảnh văn phòng TP.HCM <small>CBRE Q2/2026</small></div>
+      <div class="barrow"><div class="barhead"><span>Tỷ lệ trống Hạng A</span><b>16,7%</b></div><div class="bar"><div class="fill blue" style="width:16.7%"></div></div></div>
+      <div class="barrow"><div class="barhead"><span>Tỷ lệ trống Hạng B</span><b>12,5%</b></div><div class="bar"><div class="fill green" style="width:12.5%"></div></div></div>
+      <div class="boxsoft" style="margin-top:12px">
+        <div style="font-size:12px;font-weight:900;margin-bottom:8px">Điều rút ra</div>
+        <ul style="margin:0;padding-left:18px;font-size:11.5px;color:var(--phu);line-height:1.65">
+          <li>Thị trường không quá xấu, nhưng cũng chưa phải giai đoạn bùng nổ hấp thụ.</li>
+          <li>e.town 6 đang có mức trống cao hơn đáng kể mặt bằng chung của nhóm Hạng A.</li>
+          <li>Vì vậy, đây không chỉ là câu chuyện chu kỳ thị trường, mà còn là câu chuyện <b>định vị sản phẩm, giá thuê thực nhận và tốc độ chuyển đổi khách thuê</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="grid row4">
+    <div class="card">
+      <div class="kicker">5. Trực quan hóa hạ tầng</div>
+      <div class="title">Sơ đồ hạ tầng quanh cụm e.town Cộng Hòa <small>Điểm thay đổi quan trọng sau Nhà ga T3</small></div>
+      <div class="mapwrap">
+        <svg viewBox="0 0 860 360" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="mui2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#8a95a5"></path>
+            </marker>
+          </defs>
+          <rect x="0" y="0" width="860" height="360" fill="#fbfcfe"/>
+          <!-- Step boxes -->
+          <rect x="35" y="95" rx="24" ry="24" width="210" height="140" fill="#fff1f3" stroke="#a51423" stroke-width="2.5"/>
+          <text x="140" y="132" text-anchor="middle" style="font-size:26px;font-weight:900;fill:#7f0f1b">Cụm e.town</text>
+          <text x="140" y="160" text-anchor="middle" style="font-size:14px;fill:#5d6673">e.town 1–6 + khu văn phòng Cộng Hòa</text>
+          <text x="140" y="193" text-anchor="middle" style="font-size:16px;font-weight:900;fill:#18212b">e.town 6: 58% lấp đầy</text>
+          <text x="140" y="218" text-anchor="middle" style="font-size:13px;fill:#667085">Tài sản hưởng lợi trực tiếp</text>
+  
