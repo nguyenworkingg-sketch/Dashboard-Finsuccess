@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Dashboard dữ kiện mảng điện và bất động sản của HDG" />
+  <title>HDG | Điện & Bất động sản</title>
+  <style>
+    :root{--navy:#07182c;--navy2:#0b223d;--panel:#102a47;--panel2:#0c2139;--lime:#b7d833;--cyan:#43c7d9;--white:#f4f8fb;--muted:#9eb0c2;--line:#29445f;--orange:#ffb454;--red:#ff7b78;--green:#47cf9a;--shadow:0 18px 50px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(150deg,#061426 0%,#0a2038 56%,#07192c 100%);color:var(--white);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.5}
+    a{color:inherit}.wrap{max-width:1480px;margin:auto;padding:0 28px 64px}.topbar{position:sticky;top:0;z-index:20;background:rgba(7,24,44,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(183,216,51,.22)}
+    .topbar-in{max-width:1480px;margin:auto;display:flex;align-items:center;gap:24px;padding:13px 28px}.brand{display:flex;align-items:center;gap:11px;min-width:max-content}.mark{width:31px;height:31px;border:3px solid var(--lime);border-radius:4px;transform:rotate(45deg);display:grid;place-items:center}.mark:after{content:"";width:10px;height:10px;background:var(--lime);border-radius:2px}.brand b{letter-spacing:.12em;font-size:.9rem}.brand small{display:block;color:var(--muted);letter-spacing:.04em}.nav{margin-left:auto;display:flex;gap:5px;overflow:auto}.nav a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:8px;white-space:nowrap;font-size:.88rem}.nav a:hover,.nav a.active{color:var(--white);background:#15314e}
+    header{padding:34px 0 18px;display:grid;grid-template-columns:1.65fr .85fr;gap:22px;align-items:end}.eyebrow{color:var(--lime);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem}.title{font-size:clamp(2rem,4vw,4rem);line-height:1.02;margin:7px 0 12px;letter-spacing:-.04em}.lede{color:#c5d2de;max-width:850px;margin:0;font-size:1.02rem}.asof{justify-self:end;text-align:right;color:var(--muted);font-size:.85rem}.asof strong{display:block;color:var(--white);font-size:1.05rem}
+    .scope{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{border:1px solid var(--line);border-radius:99px;padding:6px 10px;color:#cbd7e2;font-size:.78rem}.tag.fact{border-color:rgba(71,207,154,.5);color:#92e9c7}.tag.model{border-color:rgba(255,180,84,.5);color:#ffd093}.tag.plan{border-color:rgba(67,199,217,.5);color:#8ce3ed}
+    .section{padding-top:34px;scroll-margin-top:74px}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:14px}.section-head h2{margin:0;font-size:1.45rem;letter-spacing:-.02em}.section-head p{margin:0;color:var(--muted);font-size:.86rem;text-align:right}.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(5,1fr)}.card{background:linear-gradient(145deg,rgba(16,42,71,.97),rgba(10,31,53,.97));border:1px solid rgba(89,124,153,.34);border-radius:14px;box-shadow:var(--shadow)}.kpi{padding:17px 18px;min-height:124px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;right:-24px;bottom:-35px;width:105px;height:105px;border:18px solid rgba(183,216,51,.05);border-radius:50%}.kpi .label{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}.kpi .value{font-size:1.9rem;font-weight:760;letter-spacing:-.04em;margin:10px 0 2px}.kpi .sub{color:#c5d2de;font-size:.8rem}.green{color:var(--lime)}.cyan{color:var(--cyan)}.orange{color:var(--orange)}
+    .two{grid-template-columns:1.05fr .95fr}.three{grid-template-columns:repeat(3,1fr)}.pad{padding:20px}.card h3{font-size:1rem;margin:0 0 3px}.hint{color:var(--muted);font-size:.78rem;margin:0 0 15px}.chart{height:290px;position:relative}.chart canvas{width:100%;height:100%}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.76rem;margin-top:10px}.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+    .impact-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}.impact{background:var(--panel2);padding:16px}.impact b{display:block;font-size:.84rem;margin-bottom:5px}.impact span{font-size:.8rem;color:var(--muted)}
+    .table-card{overflow:hidden}.table-tools{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}.pills{display:flex;gap:6px;flex-wrap:wrap}.pill{appearance:none;border:1px solid var(--line);background:#0b2037;color:#aebdca;border-radius:99px;padding:7px 11px;cursor:pointer;font:inherit;font-size:.76rem}.pill.active{background:var(--lime);border-color:var(--lime);color:#0b1a2a;font-weight:750}.table-wrap{overflow:auto}.data{width:100%;border-collapse:collapse;min-width:920px}.data th{position:sticky;top:0;background:#0d2946;color:#aac0d2;text-align:left;padding:11px 14px;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line)}.data td{padding:12px 14px;border-bottom:1px solid rgba(41,68,95,.68);font-size:.82rem;vertical-align:top}.data tr:hover td{background:rgba(255,255,255,.018)}.data td strong{display:block;color:#f6fbff}.subline{color:var(--muted);font-size:.74rem;margin-top:3px}.num{text-align:right;font-variant-numeric:tabular-nums}.status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 8px;font-size:.7rem;font-weight:700;background:#172f48;color:#bfd0df}.status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.status.run{color:#8ce9c5}.status.build{color:#8ce3ed}.status.legal{color:#ffd093}.status.watch{color:#b9c6d1}.status.issue{color:#ff9b97}
+    .bar{height:7px;background:#1c3854;border-radius:99px;overflow:hidden;min-width:100px}.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--lime),#e5ef7a);border-radius:inherit}.timeline{display:grid;grid-template-columns:150px repeat(7,1fr);gap:7px;align-items:center;min-width:900px}.timeline>div{font-size:.75rem}.yr{text-align:center;color:var(--muted);padding:7px}.tl-name{font-weight:700;padding:8px 0}.slot{height:34px;border:1px solid var(--line);border-radius:7px;background:#0a2038;display:grid;place-items:center;color:#aebdca}.slot.on{background:rgba(183,216,51,.17);border-color:rgba(183,216,51,.55);color:#e7f2a2}.slot.work{background:rgba(67,199,217,.14);border-color:rgba(67,199,217,.45);color:#a8edf4}.slot.wait{background:rgba(255,180,84,.12);border-color:rgba(255,180,84,.42);color:#ffd19a}.slot.model{border-style:dashed}
+    .source-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.notes{padding:18px}.notes ul{margin:10px 0 0;padding-left:18px}.notes li{color:#bdcad6;font-size:.82rem;margin:6px 0}.source-list{display:grid;gap:8px}.source{display:flex;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:#0a2038}.source:hover{border-color:var(--lime)}.source span{color:var(--muted);font-size:.76rem}.source b{display:block;font-size:.82rem}.method{border-left:3px solid var(--lime);padding:12px 14px;background:rgba(183,216,51,.06);font-size:.82rem;color:#c5d2de}
+    footer{color:var(--muted);font-size:.75rem;padding-top:30px;border-top:1px solid var(--line);margin-top:38px;display:flex;justify-content:space-between;gap:20px}
+    @media(max-width:1050px){.kpis{grid-template-columns:repeat(3,1fr)}.two,.source-grid{grid-template-columns:1fr}.three{grid-template-columns:1fr 1fr}.impact-strip{grid-template-columns:1fr 1fr}header{grid-template-columns:1fr}.asof{justify-self:start;text-align:left}.section-head{align-items:start;flex-direction:column}.section-head p{text-align:left}}
+    @media(max-width:680px){.wrap{padding:0 16px 44px}.topbar-in{padding:10px 16px}.brand small{display:none}.nav{display:none}.kpis,.three{grid-template-columns:1fr 1fr}.kpi{min-height:112px}.kpi .value{font-size:1.55rem}.impact-strip{grid-template-columns:1fr}.chart{height:250px}.title{font-size:2.35rem}footer{flex-direction:column}.table-tools{align-items:flex-start;flex-direction:column}}
+    @media(max-width:430px){.kpis,.three{grid-template-columns:1fr}}
+  </style>
+  <style>
+    /* FinSuccess visual system */
+    :root{--navy:#002060;--navy2:#003b78;--panel:#ffffff;--panel2:#f7f9fc;--lime:#97baff;--cyan:#97baff;--white:#002060;--muted:#667085;--line:#d9e0ea;--orange:#ffc000;--red:#d94b4b;--green:#12805c;--shadow:0 7px 24px rgba(0,32,96,.08)}
+    body{background:#f2f2f2;color:#17223a;font-family:Montserrat,"Segoe UI",Arial,sans-serif}
+    .wrap{max-width:1440px;padding-bottom:52px}
+    .topbar{background:#fff;border-bottom:1px solid #dfe5ed;box-shadow:0 2px 10px rgba(0,32,96,.05);backdrop-filter:none}
+    .topbar-in{padding-top:10px;padding-bottom:10px}
+    .mark{border-color:#002060;border-radius:2px;width:27px;height:27px}.mark:after{background:#ffc000;width:9px;height:9px;border-radius:1px}
+    .brand b{color:#002060;font-weight:800}.brand b span{color:#4f7fd3}.brand small{color:#7a8492}
+    .nav a{color:#667085;border-radius:0;padding:8px 10px;border-bottom:3px solid transparent}.nav a:hover{background:transparent;color:#002060}.nav a.active{background:transparent;color:#002060;border-bottom-color:#ffc000;font-weight:700}
+    header{padding:24px 0 14px;grid-template-columns:1.7fr .7fr}.eyebrow{color:#5074a8;font-size:.72rem}.title{font-size:clamp(2rem,3.2vw,3.15rem);color:#002060;margin:4px 0 8px;letter-spacing:-.035em}.lede{color:#58677a;font-size:.94rem}.asof{color:#7a8492}.asof strong{color:#002060}.scope{margin-top:12px}.tag{border-color:#d6deea;color:#556477;background:#fff}.tag.fact{border-color:#b7dfd2;color:#087151;background:#f2fbf8}.tag.model{border-color:#efd481;color:#7d5c00;background:#fffaf0}.tag.plan{border-color:#b9d0f8;color:#285fba;background:#f5f8ff}
+    .section{padding-top:26px}.section-head{margin-bottom:11px}.section-head h2{color:#002060;font-size:1.28rem}.section-head p,.hint{color:#748092}
+    .card{background:#fff;border:1px solid #dfe5ed;border-radius:8px;box-shadow:var(--shadow)}
+    .kpi{padding:15px 16px;min-height:112px;border-top:4px solid #002060}.kpi:nth-child(2n){border-top-color:#97baff}.kpi:nth-child(3n){border-top-color:#ffc000}.kpi:after{display:none}.kpi .label{color:#657286;font-size:.7rem;font-weight:700}.kpi .value{color:#002060;font-size:1.72rem;margin:7px 0 1px}.kpi .sub{color:#7a8492;font-size:.75rem}.green,.cyan,.orange{color:#002060}
+    .pad{padding:18px}.card h3{color:#002060}.legend{color:#667085}.chart{height:330px}
+    .impact-strip{background:#dfe5ed;border-color:#dfe5ed;border-radius:8px}.impact{background:#fff;padding:15px}.impact b{color:#002060}.impact span{color:#667085}
+    .table-tools{border-color:#dfe5ed}.pill{background:#fff;color:#667085;border-color:#d8e0ea}.pill.active{background:#002060;border-color:#002060;color:#fff}.data th{background:#002060;color:#fff;border-color:#002060}.data td{border-color:#e4e9ef;color:#344054}.data tr:hover td{background:#f7f9fc}.data td strong{color:#002060}.subline{color:#748092}.status{background:#edf2f8;color:#52667c}.status.run{color:#087151;background:#edf9f5}.status.build{color:#285fba;background:#eff5ff}.status.legal{color:#8a6500;background:#fff7dc}.status.watch{color:#5d6877;background:#f0f2f5}.status.issue{color:#a83b3b;background:#fff0ef}
+    .bar{background:#e7ecf2}.bar>span{background:#002060}.timeline{gap:6px}.yr{color:#667085}.tl-name{color:#002060}.slot{border-color:#dbe2eb;background:#f7f9fc;color:#667085}.slot.on{background:#e8effd;border-color:#97baff;color:#002060}.slot.work{background:#f1f5fb;border-color:#6e97d8;color:#285fba}.slot.wait{background:#fff8df;border-color:#ffc000;color:#7d5c00}
+    .notes li{color:#566579}.source{background:#f8fafc;border-color:#dfe5ed}.source:hover{border-color:#97baff}.source span{color:#748092}.source b{color:#002060}.method{border-left-color:#ffc000;background:#fff9e8;color:#526174}
+    footer{color:#7a8492;border-color:#d9e0ea}
+    .flash{display:grid;grid-template-columns:1.25fr 1fr 1fr;background:#002060;border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}.flash-main{padding:17px 20px}.flash-main .eyebrow{color:#97baff}.flash-main b{display:block;color:#fff;font-size:1.05rem;margin-top:4px}.flash-item{padding:17px 18px;border-left:1px solid rgba(255,255,255,.18)}.flash-item span{display:block;color:#b8c7e1;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}.flash-item b{display:block;color:#fff;margin-top:4px;font-size:.88rem}.flash-item em{color:#ffc000;font-style:normal}
+    @media(max-width:900px){.flash{grid-template-columns:1fr 1fr}.flash-main{grid-column:1/-1}.flash-item:first-of-type{border-left:0}.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:540px){.flash,.kpis{grid-template-columns:1fr}.flash-main{grid-column:auto}.flash-item{border-left:0;border-top:1px solid rgba(255,255,255,.18)}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="topbar-in">
+    <div class="brand"><div class="mark"></div><div><b>FIN<span>SUCCESS</span></b><small>Dashboard nội bộ</small></div></div>
+    <nav class="nav"><a href="#tong-quan" class="active">Tổng quan</a><a href="#dien">Điện</a><a href="#bds">Bất động sản</a><a href="#tac-dong">Tác động</a><a href="#nguon">Nguồn dữ liệu</a></nav>
+  </div></div>
+  <main class="wrap">
+    <header id="tong-quan">
+      <div><div class="eyebrow">FINSUCCESS · DASHBOARD TỔNG HỢP 2026</div><h1 class="title">HDG | Điện &amp; Bất động sản</h1><p class="lede">Tài sản vận hành, kết quả lịch sử, tiến độ pháp lý và pipeline dự án.</p><div class="scope"><span class="tag fact">Số liệu thực tế</span><span class="tag plan">Công bố / kế hoạch</span><span class="tag model">Giả định model</span></div></div>
+      <div class="asof"><span>Cập nhật dữ liệu</span><strong>16.09.2026</strong><span>Đơn vị: tỷ đồng, MW, triệu kWh</span></div>
+    </header>
+    <section class="flash" aria-label="Tóm tắt dữ kiện nổi bật"><div class="flash-main"><div class="eyebrow">Tóm tắt nhanh</div><b>Điện tiếp tục là nguồn doanh thu chính; BĐS gần hạn tập trung tại Charm Villas.</b></div><div class="flash-item"><span>Điện hiện hữu</span><b><em>462 MW</em> · 8 nhà máy</b></div><div class="flash-item"><span>Dữ kiện cần cập nhật</span><b>CCA / giá điện · pháp lý dự án</b></div></section>
+
+    <section class="section">
+      <div class="grid kpis">
+        <article class="card kpi"><div class="label">Công suất điện hiện hữu</div><div class="value green">462 MW</div><div class="sub">314 thủy điện · 98 mặt trời · 50 gió</div></article>
+        <article class="card kpi"><div class="label">Điện theo tỷ lệ sở hữu</div><div class="value">377 MW</div><div class="sub">Theo dữ liệu danh mục trong model</div></article>
+        <article class="card kpi"><div class="label">Doanh thu điện 2025</div><div class="value cyan">2.274</div><div class="sub">81,6% doanh thu hợp nhất năm</div></article>
+        <article class="card kpi"><div class="label">Biên gộp điện 2025</div><div class="value">72,8%</div><div class="sub">Lợi nhuận gộp 1.655 tỷ đồng</div></article>
+        <article class="card kpi"><div class="label">Book cost 4 dự án BĐS</div><div class="value orange">1.249</div><div class="sub">Tại 30/06/2026; theo model cung cấp</div></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid two">
+        <article class="card pad"><h3>Cơ cấu doanh thu theo mảng</h3><p class="hint">Số liệu thực tế 2018–2025 từ model · tỷ đồng</p><div class="chart"><canvas id="revenueChart"></canvas></div><div class="legend"><span><i style="background:#002060"></i>Điện</span><span><i style="background:#97baff"></i>Bất động sản</span><span><i style="background:#bfbfbf"></i>Khác</span></div></article>
+        <article class="card pad"><h3>Doanh thu &amp; biên gộp điện theo quý</h3><p class="hint">Q1/2024–Q2/2026 · tỷ đồng và %</p><div class="chart"><canvas id="powerChart"></canvas></div><div class="legend"><span><i style="background:#97baff"></i>Doanh thu điện</span><span><i style="background:#ffc000"></i>Biên gộp điện</span></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="dien">
+      <div class="section-head"><div><div class="eyebrow">01 · Mảng điện</div><h2>Danh mục tài sản đang vận hành</h2></div><p>8 nhà máy · công suất danh nghĩa 462 MW</p></div>
+      <article class="card table-card"><div class="table-tools"><h3>Danh mục hiện hữu</h3><div class="pills" id="powerFilters"><button class="pill active" data-filter="all">Tất cả</button><button class="pill" data-filter="hydro">Thủy điện</button><button class="pill" data-filter="solar">Điện mặt trời</button><button class="pill" data-filter="wind">Điện gió</button></div></div><div class="table-wrap"><table class="data"><thead><tr><th>Dự án</th><th>Loại hình</th><th class="num">Công suất</th><th class="num">Sở hữu</th><th class="num">CS sở hữu</th><th>Năm vận hành</th><th class="num">Tổng vốn</th><th class="num">SL bình quân</th><th>Trạng thái</th></tr></thead><tbody id="powerRows"></tbody></table></div></article>
+    </section>
+
+    <section class="section">
+      <div class="grid two">
+        <article class="card pad"><h3>Sản lượng theo loại hình</h3><p class="hint">2018–2025 · triệu kWh</p><div class="chart"><canvas id="outputChart"></canvas></div><div class="legend"><span><i style="background:#002060"></i>Thủy điện</span><span><i style="background:#ffc000"></i>Mặt trời</span><span><i style="background:#97baff"></i>Gió</span></div></article>
+        <article class="card pad"><h3>Vấn đề giá điện mặt trời</h3><p class="hint">Dữ kiện pháp lý và kế toán đến kỳ gần nhất</p>
+          <div class="impact-strip" style="grid-template-columns:1fr 1fr;margin-top:18px"><div class="impact"><b>SP Infra 1 · 50 MWp</b><span>COD 09/2020; có CCA 02/2023. HDG ghi nhận dự phòng 193 tỷ đồng trong Q1/2026 cho phần chênh lệch giá COD–CCA.</span></div><div class="impact"><b>Hồng Phong 4 · 48 MWp</b><span>Khoảng 600 tỷ đồng dự phòng đã ghi nhận. CCA và cơ chế giá cuối cùng vẫn là biến số cần cập nhật.</span></div></div>
+          <div class="method" style="margin-top:14px"><b>Tác động cơ học:</b> dự phòng làm tăng chi phí quản lý và giảm lợi nhuận kỳ ghi nhận; mức giá thấp hơn FIT làm giảm doanh thu bán điện; thu hồi khoản phải thu làm tăng dòng tiền nhưng không nhất thiết tạo doanh thu mới.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Pipeline điện mới</h2><p class="hint">Trạng thái công bố và giả định tiến độ trong model được trình bày tách biệt</p></div></div>
+      <article class="card table-card"><div class="table-wrap"><table class="data"><thead><tr><th>Dự án</th><th>Loại hình</th><th class="num">Công suất</th><th class="num">Sở hữu</th><th>Trạng thái gần nhất</th><th class="num">Tổng vốn dự kiến</th><th>COD / mốc theo model</th></tr></thead><tbody id="pipelineRows"></tbody></table></div></article>
+    </section>
+
+    <section class="section" id="bds">
+      <div class="section-head"><div><div class="eyebrow">02 · Bất động sản</div><h2>Quỹ dự án trọng điểm</h2></div><p>Facts tài sản và pháp lý · giả định model được gắn nhãn riêng</p></div>
+      <div class="grid kpis" style="grid-template-columns:repeat(4,1fr)">
+        <article class="card kpi"><div class="label">Charm Villas · tồn còn lại</div><div class="value green">~104–106 căn</div><div class="sub">Đã hoàn thiện; số lượng giữa model và sell-side chênh nhẹ</div></article>
+        <article class="card kpi"><div class="label">Charm · book cost</div><div class="value">354,3</div><div class="sub">HTK 303,9 + XDCB 50,4 tại 30/06/26</div></article>
+        <article class="card kpi"><div class="label">3 dự án phát triển</div><div class="value cyan">~7,3 ha</div><div class="sub">Phan Đình Giót · Minh Long · Green Lane</div></article>
+        <article class="card kpi"><div class="label">GDV cơ sở trong model</div><div class="value orange">15.300</div><div class="sub">Không phải doanh thu đã ký hoặc guidance</div></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <article class="card table-card"><div class="table-tools"><h3>Hồ sơ dự án</h3><div class="pills"><span class="tag fact">Facts</span><span class="tag model">Input model</span></div></div><div class="table-wrap"><table class="data"><thead><tr><th>Dự án</th><th>Quy mô / sản phẩm</th><th>Pháp lý &amp; trạng thái</th><th class="num">Book cost 30/06/26</th><th>Tiền đất</th><th class="num">GDV model</th><th>Bàn giao model</th></tr></thead><tbody id="propertyRows"></tbody></table></div></article>
+    </section>
+
+    <section class="section">
+      <div class="grid two">
+        <article class="card pad"><h3>Doanh thu BĐS lịch sử</h3><p class="hint">2018–2025 · tỷ đồng</p><div class="chart"><canvas id="propertyChart"></canvas></div></article>
+        <article class="card pad"><h3>Tiến độ theo mốc</h3><p class="hint">Ô nét đứt là mốc giả định trong model, không phải cam kết</p><div class="table-wrap"><div class="timeline" id="timeline"></div></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="tac-dong">
+      <div class="section-head"><div><div class="eyebrow">03 · Tác động cơ học</div><h2>Sự kiện → chỉ tiêu chịu ảnh hưởng</h2></div><p>Không bao gồm đánh giá tích cực/tiêu cực</p></div>
+      <div class="impact-strip">
+        <div class="impact"><b>Thủy văn thay đổi</b><span>→ Sản lượng thủy điện → doanh thu điện → lợi nhuận gộp và dòng tiền vận hành.</span></div>
+        <div class="impact"><b>Điều chỉnh giá COD–CCA</b><span>→ Doanh thu được công nhận → dự phòng / hoàn nhập → khoản phải thu EVN.</span></div>
+        <div class="impact"><b>COD dự án điện mới</b><span>→ Công suất vận hành → khấu hao, lãi vay vốn hóa/chuyển chi phí → doanh thu bán điện.</span></div>
+        <div class="impact"><b>Bán &amp; bàn giao Charm</b><span>→ Người mua trả tiền trước → doanh thu BĐS → giá vốn tồn kho → dòng tiền.</span></div>
+        <div class="impact"><b>Phê duyệt dự án BĐS</b><span>→ Chi phí phát triển dở dang → nghĩa vụ tiền đất → điều kiện xây dựng/mở bán.</span></div>
+        <div class="impact"><b>Giải ngân pipeline</b><span>→ XDCB dở dang → nợ vay → chi phí lãi vay → dòng tiền đầu tư.</span></div>
+        <div class="impact"><b>ASP / chính sách bán hàng</b><span>→ Giá trị hợp đồng → biên gộp dự án → tốc độ thu tiền khách hàng.</span></div>
+        <div class="impact"><b>Thay đổi tiến độ bàn giao</b><span>→ Dịch chuyển doanh thu và lợi nhuận giữa các kỳ; tổng giá trị hợp đồng không tự thay đổi.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="nguon">
+      <div class="section-head"><div><div class="eyebrow">04 · Nguồn &amp; phương pháp</div><h2>Phân loại dữ liệu</h2></div></div>
+      <div class="source-grid">
+        <article class="card notes"><h3>Quy tắc trình bày</h3><ul><li><b>Số liệu thực tế:</b> lịch sử tài chính, công suất hiện hữu, book cost và khoản dự phòng đã ghi nhận.</li><li><b>Công bố / kế hoạch:</b> trạng thái pháp lý, mục tiêu COD, kế hoạch khởi công từ HDG hoặc cơ quan quản lý.</li><li><b>Giả định model:</b> ASP, GDV, COD base case, lịch bàn giao và xác suất pháp lý. Không được xem là kết quả đã đạt.</li><li>Các số liệu công suất có thể khác nhau giữa MW và MWp; dashboard giữ cách trình bày theo nguồn.</li></ul></article>
+        <article class="card notes"><h3>Nguồn chính</h3><div class="source-list"><a class="source" href="https://hado.com.vn/quan-he-co-dong" target="_blank" rel="noreferrer"><div><b>HDG · Quan hệ cổ đông</b><span>BCTC, bản tin nhà đầu tư, báo cáo thường niên</span></div></a><a class="source" href="https://hado.com.vn/ninh-thuan-trao-chung-nhan-dau-tu-du-an-dien-gio-hon-1-700-ty-dong-cho-tap-doan-ha-do" target="_blank" rel="noreferrer"><div><b>HDG · Điện gió Phước Hữu</b><span>Chấp thuận đầu tư và tổng vốn công bố</span></div></a><a class="source" href="https://hado.com.vn/thong-tin-tong-quan-du-an-hado-charm-villas" target="_blank" rel="noreferrer"><div><b>HDG · Hado Charm Villas</b><span>Quy mô và cơ cấu sản phẩm</span></div></a><div class="source"><div><b>HDG-Fisc.xlsm</b><span>Model do người dùng cung cấp · dữ liệu cập nhật đến 30/06/2026</span></div></div><div class="source"><div><b>Vietcap · 16/07/2026</b><span>Dùng để bổ sung dữ kiện; không sử dụng khuyến nghị hoặc giá mục tiêu</span></div></div></div></article>
+      </div>
+    </section>
+    <footer><span>Dashboard dữ kiện doanh nghiệp · Không phải khuyến nghị đầu tư</span><span>FIN SUCCESS format · HDG 2026</span></footer>
+  </main>
+  <script>
+    const powerAssets=[
+      {name:'Za Hưng',type:'hydro',label:'Thủy điện',mw:30,own:52,equity:16,year:'2009',capex:503,output:122.7,status:'run'},
+      {name:'Nậm Pông',type:'hydro',label:'Thủy điện',mw:30,own:52,equity:16,year:'2013',capex:796,output:123.3,status:'run'},
+      {name:'Nhạn Hạc',type:'hydro',label:'Thủy điện',mw:59,own:52,equity:31,year:'2018',capex:1881,output:220,status:'run'},
+      {name:'Hồng Phong 4',type:'solar',label:'Điện mặt trời',mw:48,own:83,equity:40,year:'06/2019',capex:1100,output:95,status:'issue',note:'Đang xử lý CCA / giá điện'},
+      {name:'Ninh Phước (Infra 1)',type:'solar',label:'Điện mặt trời',mw:50,own:100,equity:50,year:'09/2020',capex:1055,output:100,status:'issue',note:'Dự phòng 193 tỷ trong Q1/26'},
+      {name:'Sông Tranh 4',type:'hydro',label:'Thủy điện',mw:48,own:63,equity:30,year:'06/2021',capex:1700,output:180,status:'run'},
+      {name:'Đăk Mi 2',type:'hydro',label:'Thủy điện',mw:147,own:98,equity:144,year:'09/2021',capex:4700,output:450,status:'run'},
+      {name:'7A Thuận Nam',type:'wind',label:'Điện gió',mw:50,own:100,equity:50,year:'08/2021',capex:1210,output:180,status:'run'}
+    ];
+    const pipeline=[
+      ['La Trọng / Trường Thịnh','Thủy điện','22 MW','26%','Đang hoàn tất thủ tục đưa vào vận hành','1.000','Mục tiêu Q3/2026','build'],
+      ['Sơn Nham','Thủy điện','9 MW','~52%','Điều chỉnh công suất 6,8 → 9 MW; hoàn thiện pháp lý và đầu tư','287','Base Q4/2027','legal'],
+      ['Sơn Linh','Thủy điện','15 MW','~52%','Điều chỉnh công suất 7 → 15 MW; tiến độ sau Sơn Nham','595','Base 2029–2030','legal'],
+      ['Phước Hữu','Điện gió','50 MW','100%','Có giấy chứng nhận đầu tư; ĐTM, mua sắm thiết bị và thủ tục gia hạn','1.730','Mục tiêu cuối 2027; base 2028','build'],
+      ['Bình Gia','Điện gió','80 MW','99,9%','Có chủ trương đầu tư; HDG đã lập pháp nhân dự án','3.053','Mục tiêu Q3/2028; base 2029','legal'],
+      ['7A giai đoạn 2','Điện gió','21 MW','Dự kiến 100%','Nghiên cứu tiền khả thi và tác động lên 7A hiện hữu','Chưa công bố','2029+','watch'],
+      ['Lệ Thủy','Điện gió','30 MW','Chưa rõ','Đang đề xuất đầu tư; có trong kế hoạch QHĐ VIII','960','2030+','watch'],
+      ['Lộc Bình','Điện gió','50 MW','Chưa rõ','Có biên bản ghi nhớ; chưa có chủ trương đầu tư cuối cùng','1.900','2029–2031','watch'],
+      ['Ea H’leo 1+2','Điện gió','57 MW','Dự kiến 100%','Chưa có thông tin pháp lý mới','1.824','Quyền chọn','watch'],
+      ['Sóc Trăng','Điện gió','40 MW','Dự kiến 100%','Chưa có thông tin triển khai mới','1.360','Quyền chọn','watch']
+    ];
+    const properties=[
+      {name:'Charm Villas – GĐ3',scale:'30,2 ha · thấp tầng',legal:'Đã hoàn thiện; mở bán lại từ 06/2025',book:'354,3',land:'Chưa hoàn tất; model dự phòng ~310 tỷ',gdv:'2.600–3.114',hand:'2026–2030',status:'run'},
+      {name:'62 Phan Đình Giót',scale:'2,2–2,3 ha · căn hộ + văn phòng/TM',legal:'Trong cơ chế thí điểm NQ171; đang hoàn thiện chủ trương đầu tư và chỉ tiêu dân số',book:'111,0',land:'Chưa có bằng chứng đã nộp',gdv:'5.600–6.800',hand:'2030–2031',status:'legal'},
+      {name:'Linh Trung / Minh Long',scale:'2,7–2,8 ha · 31 nhà phố + 1.409 căn/officetel/shophouse',legal:'Đã có bước chấp thuận thí điểm; tiếp tục hoàn thiện thủ tục đầu tư',book:'490,3',land:'Đã nộp một lần theo HDG; còn khả năng bổ sung',gdv:'5.200–6.045',hand:'2030–2031',status:'legal'},
+      {name:'Hado Green Lane',scale:'2,3 ha · 1.231 căn hộ',legal:'Chờ phê duyệt thí điểm và hoàn thiện pháp lý',book:'293,1',land:'Tài liệu cũ ghi đã nộp; còn rủi ro xác định lại',gdv:'4.500–5.440',hand:'2031–2032',status:'watch'}
+    ];
+    const statusText={run:'Vận hành / sẵn sàng',build:'Đang triển khai',legal:'Thủ tục pháp lý',watch:'Theo dõi',issue:'Vướng giá điện'};
+    function renderPower(filter='all'){document.querySelector('#powerRows').innerHTML=powerAssets.filter(x=>filter==='all'||x.type===filter).map(x=>`<tr><td><strong>${x.name}</strong>${x.note?`<div class="subline">${x.note}</div>`:''}</td><td>${x.label}</td><td class="num">${x.mw} MW</td><td class="num">${x.own}%</td><td class="num">${x.equity} MW</td><td>${x.year}</td><td class="num">${x.capex.toLocaleString('vi-VN')}</td><td class="num">${x.output}</td><td><span class="status ${x.status}">${statusText[x.status]}</span></td></tr>`).join('')}
+    renderPower(); document.querySelectorAll('#powerFilters .pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#powerFilters .pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPower(b.dataset.filter)});
+    document.querySelector('#pipelineRows').innerHTML=pipeline.map(x=>`<tr><td><strong>${x[0]}</strong></td><td>${x[1]}</td><td class="num">${x[2]}</td><td class="num">${x[3]}</td><td><span class="status ${x[7]}">${statusText[x[7]]}</span><div class="subline">${x[4]}</div></td><td class="num">${x[5]}</td><td><span class="tag model">Model</span><div class="subline">${x[6]}</div></td></tr>`).join('');
+    document.querySelector('#propertyRows').innerHTML=properties.map(x=>`<tr><td><strong>${x.name}</strong></td><td>${x.scale}</td><td><span class="status ${x.status}">${statusText[x.status]}</span><div class="subline">${x.legal}</div></td><td class="num">${x.book}</td><td>${x.land}</td><td class="num"><span class="tag model">${x.gdv}</span></td><td><span class="tag model">${x.hand}</span></td></tr>`).join('');
+    const yrs=[2026,2027,2028,2029,2030,2031,2032], tl=[['Charm Villas',['on','on','on','on','on','','']],['Phan Đình Giót',['wait','work','work','work','on','on','']],['Minh Long',['wait','work','work','work','on','on','']],['Green Lane',['wait','wait','work','work','work','on','on']]];let t='<div></div>'+yrs.map(y=>`<div class="yr">${y}</div>`).join('');tl.forEach(r=>{t+=`<div class="tl-name">${r[0]}</div>`+r[1].map((c,i)=>`<div class="slot ${c} ${i?'model':''}">${c==='on'?'Bàn giao':c==='work'?'Triển khai':c==='wait'?'Pháp lý':''}</div>`).join('')});document.querySelector('#timeline').innerHTML=t;
+
+    function chart(id,{labels,series,max,percent=false,stacked=false}){const c=document.getElementById(id),ctx=c.getContext('2d');function draw(){const dpr=devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);const hasLine=series.some(s=>s.kind==='line'),p={l:47,r:hasLine?52:16,t:14,b:35},cw=w-p.l-p.r,ch=h-p.t-p.b;ctx.font='12px Segoe UI';ctx.strokeStyle='rgba(116,145,168,.22)';ctx.fillStyle='#8298aa';ctx.textAlign='right';for(let i=0;i<=4;i++){let y=p.t+ch*i/4;ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(w-p.r,y);ctx.stroke();let v=max*(1-i/4);ctx.fillText(Math.round(v).toLocaleString('vi-VN'),p.l-8,y+4)}ctx.textAlign='center';labels.forEach((l,i)=>ctx.fillText(l,p.l+cw*(i+.5)/labels.length,h-11));const bars=series.filter(s=>s.kind!=='line'),lines=series.filter(s=>s.kind==='line'),groupW=cw/labels.length*.68,barW=stacked?groupW:groupW/Math.max(1,bars.length);bars.forEach((s,si)=>{s.data.forEach((v,i)=>{let x=p.l+cw*i/labels.length+(cw/labels.length-groupW)/2+(stacked?0:si*barW),base=h-p.b,prev=stacked?bars.slice(0,si).reduce((a,b)=>a+(b.data[i]||0),0):0,y=base-ch*(v+prev)/max,y0=base-ch*prev/max;ctx.fillStyle=s.color;ctx.fillRect(x,y,barW-(stacked?0:3),y0-y)})});lines.forEach(s=>{const pts=s.data.map((v,i)=>({x:p.l+cw*(i+.5)/labels.length,y:p.t+ch*(1-v/s.max)}));ctx.strokeStyle=s.color;ctx.lineWidth=2.5;ctx.beginPath();pts.forEach((pt,i)=>i?ctx.lineTo(pt.x,pt.y):ctx.moveTo(pt.x,pt.y));ctx.stroke();ctx.fillStyle=s.color;pts.forEach(pt=>{ctx.beginPath();ctx.arc(pt.x,pt.y,3,0,Math.PI*2);ctx.fill()});ctx.textAlign='left';ctx.fillText(''+Math.round(s.max*100)+'%',w-p.r+8,p.t+4);ctx.fillText('0%',w-p.r+8,h-p.b+3)})}draw();new ResizeObserver(draw).observe(c)}
+    chart('revenueChart',{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],max:5000,stacked:true,series:[{color:'#002060',data:[363,606,786,1276,2116,1939,1891,2274]},{color:'#97baff',data:[1863,2724,3059,2091,1111,282,415,47]},{color:'#bfbfbf',data:[995,1013,1154,410,354,661,412,465]}]});
+    chart('powerChart',{labels:['Q1/24','Q2/24','Q3/24','Q4/24','Q1/25','Q2/25','Q3/25','Q4/25','Q1/26','Q2/26'],max:800,series:[{color:'#97baff',data:[414,348,444,685,503,466,573,732,508,380]},{kind:'line',color:'#ffc000',data:[.643,.569,.655,.739,.710,.663,.740,.772,.697,.589],max:.85}]});
+    chart('outputChart',{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],max:1700,stacked:true,series:[{color:'#002060',data:[281,371,442,709,1135,957,924,1222]},{color:'#ffc000',data:[0,45,116,168,175,170,176,176]},{color:'#97baff',data:[0,0,0,25,180,112,107,123]}]});
+    chart('propertyChart',{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],max:3400,series:[{color:'#002060',data:[1863,2724,3059,2091,1111,282,415,47]}]});
+    const sections=[...document.querySelectorAll('main [id]')],links=[...document.querySelectorAll('.nav a')];addEventListener('scroll',()=>{let active='tong-quan';sections.forEach(s=>{if(scrollY>=s.offsetTop-130)active=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active))},{passive:true});
+  </script>
+</body></html>
