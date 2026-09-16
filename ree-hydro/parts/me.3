@@ -1,0 +1,12 @@
+','Cuối 6T26E'],datasets:[{label:'Backlog (tỷ đồng)',data:[5913,10000],backgroundColor:['#3340a0','#f4b82d'],borderRadius:10}]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>v.toLocaleString('vi-VN')}}}}
+});
+new Chart(document.getElementById('profitChart'),{
+type:'bar',data:{labels:['2024','2025','6T26'],datasets:[
+{label:'Doanh thu',data:[2880,3521,1183],backgroundColor:'#202a83',borderRadius:7,yAxisID:'y'},
+{label:'LNST',data:[149,164,76],backgroundColor:'#f4b82d',borderRadius:7,yAxisID:'y1'}
+]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{y:{beginAtZero:true,position:'left'},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false}}}}
+});
+</script>
+</body></html>
