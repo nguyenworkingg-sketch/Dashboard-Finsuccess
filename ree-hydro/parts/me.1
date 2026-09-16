@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FinSuccess | REE M&E Dashboard 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{--xanh:#202a83;--xanh2:#3340a0;--vang:#f4b82d;--chu:#202430;--mo:#6f7485;--vien:#e5e7ef;--nen:#fbfbfd;--xanhla:#198754;--do:#c94848;--cam:#c47a16;--shadow:0 10px 30px rgba(32,42,131,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--nen);color:var(--chu);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(135deg,transparent 0 23%,rgba(32,42,131,.022) 23% 27%,transparent 27% 49%,rgba(32,42,131,.022) 49% 53%,transparent 53% 75%,rgba(32,42,131,.022) 75% 79%,transparent 79%)}
+.khung{max-width:1500px;margin:auto;padding:24px 30px 56px}.dau{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}.logo{width:205px;max-height:82px;object-fit:contain}.meta{font-size:12px;color:var(--mo);line-height:1.55;text-align:right}
+.ketluan-dau{margin:0 0 16px;padding:15px 18px;border-radius:14px;background:linear-gradient(100deg,var(--xanh),#343fa0);color:#fff;font-size:17px;font-weight:800;line-height:1.55;box-shadow:var(--shadow)}.ketluan-dau span{color:#ffd96b}
+.hero{background:linear-gradient(115deg,#fff 0%,#fff 72%,#f3f4fa 100%);border:1px solid var(--vien);border-radius:22px;padding:30px 32px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:350px;height:350px;border-radius:50%;right:-200px;top:-205px;background:radial-gradient(circle,rgba(244,184,45,.23),rgba(244,184,45,0) 68%)}
+.nhan{font-size:12px;font-weight:850;color:var(--xanh);letter-spacing:.08em;text-transform:uppercase}h1{font-size:clamp(32px,4vw,54px);line-height:1.03;color:var(--xanh);margin:6px 0 10px;letter-spacing:-.035em}.phude{font-size:18px;font-weight:650;color:#3b4052;max-width:1180px;line-height:1.5}.luandiem{margin-top:20px;padding:16px 18px;border-left:5px solid var(--vang);background:#fff8e7;border-radius:10px;font-size:15px;line-height:1.62;max-width:1260px}.luandiem b{color:var(--xanh)}
+.menu{position:sticky;top:0;z-index:20;display:flex;gap:8px;flex-wrap:wrap;padding:10px 0;margin:15px 0;background:rgba(251,251,253,.95);backdrop-filter:blur(8px)}.menu a{text-decoration:none;border:1px solid var(--vien);background:#fff;color:#41465a;border-radius:999px;padding:9px 14px;font-weight:760;font-size:13px}.menu a:hover{background:var(--xanh);color:#fff;border-color:var(--xanh)}
+.khoi{margin-top:18px;scroll-margin-top:78px}.tieude-khoi{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:0 0 10px}.tieude-khoi h2{margin:0;color:var(--xanh);font-size:23px;letter-spacing:-.02em}.tieude-khoi p{margin:0;color:var(--mo);font-size:12px}
+.luoi{display:grid;gap:16px}.hai{grid-template-columns:repeat(2,1fr)}.ba{grid-template-columns:repeat(3,1fr)}.bon{grid-template-columns:repeat(4,1fr)}.nam{grid-template-columns:repeat(5,1fr)}.sau{grid-template-columns:repeat(6,1fr)}
+.the{background:#fff;border:1px solid var(--vien);border-radius:18px;padding:20px;box-shadow:0 7px 20px rgba(31,36,48,.035)}.the h3{margin:0 0 8px;color:var(--xanh);font-size:18px}.nho{font-size:12px;color:var(--mo);line-height:1.5}.nhanxet{font-size:14px;line-height:1.64;color:#343949}.nhanxet b{color:var(--xanh)}
+.kpi{position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;right:0;top:0;width:6px;height:100%;background:var(--vang)}.kpi .ten{font-size:12px;color:var(--mo);font-weight:750}.kpi .so{font-size:29px;font-weight:900;color:var(--xanh);margin:5px 0 2px}.kpi .diengiai{font-size:12px;color:#555a6c;line-height:1.45}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}.pill.xanh{background:#e8f5ee;color:#167245}.pill.vang{background:#fff2cf;color:#8a6211}.pill.do{background:#fde9e8;color:#a33c38}.pill.xam{background:#eef0f5;color:#5f6575}
+.bangwrap{overflow:auto;max-height:600px;border:1px solid var(--vien);border-radius:14px}.bang{width:100%;border-collapse:collapse;font-size:12px;background:#fff}.bang th,.bang td{padding:10px 10px;border-bottom:1px solid var(--vien);vertical-align:top}.bang th{background:#f6f7fb;color:var(--xanh);text-align:left;position:sticky;top:0;z-index:2}.bang td:first-child{font-weight:800;color:#2d3350}
+.chartbox{height:350px;position:relative}.note{padding:14px 15px;border-radius:13px;border:1px solid #e7e8f0;background:#f7f8fc;font-size:13px;line-height:1.58}.note.warn{background:#fff7e8;border-color:#f1dfb5}.note.good{background:#edf8f2;border-color:#d7eee1}.note.bad{background:#fff0ef;border-color:#f3d5d1}
+.phan{margin-top:28px;padding:18px 20px;border-radius:18px;background:linear-gradient(100deg,var(--xanh),#343fa0);color:white;box-shadow:var(--shadow)}.phan .so-phan{font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;opacity:.8}.phan h2{margin:4px 0 4px;font-size:28px;letter-spacing:-.025em}.phan p{margin:0;opacity:.86;font-size:13px;line-height:1.5}
+.bar{height:8px;background:#eceef5;border-radius:999px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--xanh);border-radius:999px}
+.source-list{font-size:12px;color:#62697a;line-height:1.7}.source-list a{color:var(--xanh)}.chan{margin-top:20px;padding-top:14px;border-top:1px solid var(--vien);font-size:11px;color:#7b8090;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:1100px){.hai,.ba{grid-template-columns:1fr}.bon,.nam,.sau{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.khung{padding:16px 13px 40px}.hero{padding:22px 19px}.bon,.nam,.sau{grid-template-columns:1fr}.dau{align-items:flex-start}.logo{width:158px}.phude{font-size:15px}.phan h2{font-size:23px}.chartbox{height:310px}}
+</style><style id="ree-master-nav-style">.reeMasterNav{position:sticky;top:0;z-index:99999;background:#fff;border-bottom:1px solid #e5e7ef;padding:9px 18px;display:flex;gap:8px;align-items:center;font-family:Inter,system-ui,sans-serif;box-shadow:0 3px 14px rgba(32,42,131,.06)}.reeMasterBrand{font-weight:950;color:#202a83;margin-right:auto}.reeMasterBrand b{color:#f4b82d}.reeMasterNav a{text-decoration:none;padding:8px 13px;border:1px solid #e5e7ef;border-radius:999px;color:#41465a;font-size:12px;font-weight:800}.reeMasterNav a.active{background:#202a83;color:#fff;border-color:#202a83}@media(max-width:640px){.reeMasterNav{padding:8px;overflow:auto}.reeMasterBrand{display:none}.reeMasterNav a{white-space:nowrap;flex:1;text-align:center}}</style></head><body><div class="reeMasterNav"><div class="reeMasterBrand">Fin<b>Success</b> · REE</div><a href="./" >Thủy điện</a><a href="me.html" class="active">M&amp;E</a><a href="office.html" class="">Văn phòng cho thuê</a></div><div class="khung">
+<div class="dau">
+  <div style="font-size:30px;font-weight:950;color:#202a83">Fin<span style="color:#f4b82d">Success</span></div>
+  <div class="meta"><b>REE — M&E</b><br>Cập nhật: 16/09/2026<br>FinSuccess | Dashboard nội bộ</div>
+</div>
+<div class="ketluan-dau"><span>Kết luận nhanh:</span> M&E đang bước vào một chu kỳ tăng trưởng mới về <b>quy mô order book</b>: hợp đồng mới 6T26 đạt khoảng <b>5.865 tỷ đồng</b>, vượt xa run-rate 2025, trong khi backlog đầu năm đã ở mức <b>5.913 tỷ đồng</b>. Chất lượng thesis hiện phụ thuộc vào ba biến: <b>tốc độ chuyển backlog thành doanh thu, biên lợi nhuận thực và khả năng thu hồi công nợ</b>.</div>
+<div class="hero">
+  <div class="nhan">Bảng theo dõi hoạt động M&E</div>
+  <h1>REE M&E — Order Book bước sang scale mới</h1>
+  <div class="phude">Theo dõi <b>hợp đồng mới — backlog — doanh thu — lợi nhuận — project mix — công nợ</b> của REE M&E, với trọng tâm là các vertical đang mở rộng như <b>sân bay, hạ tầng công, data center, Phú Quốc/APEC, FDI công nghiệp và năng lượng</b>.</div>
+  <div class="luandiem"><b>Luận điểm chính:</b> điểm đáng chú ý nhất không phải LNST 6T26 tăng mạnh, mà là <b>độ lớn và chất lượng order book</b> đang thay đổi. Backlog tạo visibility; tuy nhiên cash collection và provisioning mới quyết định chất lượng lợi nhuận.</div>
+</div>
+<div class="menu">
+<a href="#overview">Tổng quan</a><a href="#orders">Order book</a><a href="#projects">Dự án</a><a href="#profit">Lợi nhuận</a><a href="#monitor">Theo dõi</a><a href="#sources">Nguồn</a>
+</div>
+<section id="overview" class="khoi">
+<div class="tieude-khoi"><h2>Tổng quan nhanh</h2><p>Snapshot hoạt động M&E</p></div>
+<div class="luoi sau">
+  <div class="the kpi"><div class="ten">Doanh thu 2025</div><div class="so">3.521</div><div class="diengiai"><span class="pill xanh">+22,2% YoY</span><br>tỷ đồng</div></div>
+  <div class="the kpi"><div class="ten">LNST 2025</div><div class="so">164</div><div class="diengiai"><span class="pill xanh">+1
