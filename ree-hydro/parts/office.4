@@ -1,0 +1,24 @@
+g tin cần theo dõi thêm</b> vì chủ yếu dựa trên nguồn tổng hợp của CTCK, chưa phải công bố cập nhật trực tiếp mới nhất của REE.<br><br>
+    <b>Lưu ý sử dụng:</b> Dashboard này thiên về mục đích theo dõi vận hành và xây dựng luận điểm đầu tư. Bộ kéo độ nhạy chỉ là công cụ minh họa, không phải dự báo chính thức. Với các mục như <b>giá thuê thực nhận</b>, <b>tỷ lệ gia hạn theo từng tòa</b> và <b>tin ký hợp đồng thuê lớn</b>, nếu doanh nghiệp chưa công bố công khai thì tôi giữ trạng thái “chưa có dữ liệu công khai đủ tin cậy” thay vì điền ước đoán.
+  </section>
+</div>
+<script>
+function dinhDang(x){
+  return Math.round(x).toLocaleString('en-US');
+}
+function capNhat(){
+  const nla = 36780;
+  const hienTai = 0.58*nla;
+  const tyle = +document.getElementById('occ').value;
+  const daThue = nla * tyle/100;
+  const trong = nla - daThue;
+  const them = Math.max(0, daThue - hienTai);
+  document.getElementById('tyle').innerText = tyle + '%';
+  document.getElementById('dtDaThue').innerText = dinhDang(daThue);
+  document.getElementById('dtTrong').innerText = dinhDang(trong);
+  document.getElementById('dtThem').innerText = dinhDang(them);
+}
+capNhat();
+</script>
+</body>
+</html>
